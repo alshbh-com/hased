@@ -14,16 +14,1134 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      activity_logs: {
+        Row: {
+          action: string
+          created_at: string
+          details: Json | null
+          id: string
+          user_id: string | null
+        }
+        Insert: {
+          action?: string
+          created_at?: string
+          details?: Json | null
+          id?: string
+          user_id?: string | null
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          details?: Json | null
+          id?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      advances: {
+        Row: {
+          amount: number
+          created_at: string
+          created_by: string | null
+          id: string
+          reason: string | null
+          type: string
+          user_id: string
+        }
+        Insert: {
+          amount?: number
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          reason?: string | null
+          type?: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          reason?: string | null
+          type?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      app_settings: {
+        Row: {
+          key: string
+          updated_at: string | null
+          value: string
+        }
+        Insert: {
+          key: string
+          updated_at?: string | null
+          value?: string
+        }
+        Update: {
+          key?: string
+          updated_at?: string | null
+          value?: string
+        }
+        Relationships: []
+      }
+      cash_flow_entries: {
+        Row: {
+          amount: number
+          created_at: string
+          created_by: string | null
+          entry_date: string
+          id: string
+          notes: string | null
+          office_id: string | null
+          reason: string | null
+          type: string
+        }
+        Insert: {
+          amount?: number
+          created_at?: string
+          created_by?: string | null
+          entry_date?: string
+          id?: string
+          notes?: string | null
+          office_id?: string | null
+          reason?: string | null
+          type?: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          created_by?: string | null
+          entry_date?: string
+          id?: string
+          notes?: string | null
+          office_id?: string | null
+          reason?: string | null
+          type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_cash_flow_entries_office_id"
+            columns: ["office_id"]
+            isOneToOne: false
+            referencedRelation: "offices"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      companies: {
+        Row: {
+          agreement_price: number
+          created_at: string
+          id: string
+          name: string
+        }
+        Insert: {
+          agreement_price?: number
+          created_at?: string
+          id?: string
+          name?: string
+        }
+        Update: {
+          agreement_price?: number
+          created_at?: string
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      company_payments: {
+        Row: {
+          amount: number
+          company_id: string | null
+          created_at: string
+          id: string
+          notes: string | null
+          paid_by: string | null
+        }
+        Insert: {
+          amount?: number
+          company_id?: string | null
+          created_at?: string
+          id?: string
+          notes?: string | null
+          paid_by?: string | null
+        }
+        Update: {
+          amount?: number
+          company_id?: string | null
+          created_at?: string
+          id?: string
+          notes?: string | null
+          paid_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_company_payments_company_id"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      courier_bonuses: {
+        Row: {
+          amount: number
+          courier_id: string
+          created_at: string
+          created_by: string | null
+          id: string
+          reason: string | null
+          type: string | null
+        }
+        Insert: {
+          amount?: number
+          courier_id: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          reason?: string | null
+          type?: string | null
+        }
+        Update: {
+          amount?: number
+          courier_id?: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          reason?: string | null
+          type?: string | null
+        }
+        Relationships: []
+      }
+      courier_collections: {
+        Row: {
+          amount: number
+          collected_by: string | null
+          courier_id: string
+          created_at: string
+          id: string
+          order_id: string | null
+        }
+        Insert: {
+          amount?: number
+          collected_by?: string | null
+          courier_id: string
+          created_at?: string
+          id?: string
+          order_id?: string | null
+        }
+        Update: {
+          amount?: number
+          collected_by?: string | null
+          courier_id?: string
+          created_at?: string
+          id?: string
+          order_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_courier_collections_order_id"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      courier_locations: {
+        Row: {
+          accuracy: number | null
+          courier_id: string
+          id: string
+          latitude: number
+          longitude: number
+          updated_at: string
+        }
+        Insert: {
+          accuracy?: number | null
+          courier_id: string
+          id?: string
+          latitude?: number
+          longitude?: number
+          updated_at?: string
+        }
+        Update: {
+          accuracy?: number | null
+          courier_id?: string
+          id?: string
+          latitude?: number
+          longitude?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      delivery_prices: {
+        Row: {
+          created_at: string
+          governorate: string
+          id: string
+          office_id: string
+          pickup_price: number
+          price: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          governorate?: string
+          id?: string
+          office_id: string
+          pickup_price?: number
+          price?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          governorate?: string
+          id?: string
+          office_id?: string
+          pickup_price?: number
+          price?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_delivery_prices_office_id"
+            columns: ["office_id"]
+            isOneToOne: false
+            referencedRelation: "offices"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      diaries: {
+        Row: {
+          balance: number | null
+          cash_arrived_entries: Json | null
+          closed_at: string | null
+          created_at: string
+          diary_date: string
+          diary_number: number
+          id: string
+          is_archived: boolean | null
+          is_closed: boolean
+          lock_status_updates: boolean
+          manual_arrived_total: number | null
+          office_id: string
+          orange_extra_due: number | null
+          orange_extra_due_reason: string | null
+          prevent_new_orders: boolean
+          previous_due: number | null
+          show_postponed_due: boolean | null
+          updated_at: string
+        }
+        Insert: {
+          balance?: number | null
+          cash_arrived_entries?: Json | null
+          closed_at?: string | null
+          created_at?: string
+          diary_date?: string
+          diary_number?: number
+          id?: string
+          is_archived?: boolean | null
+          is_closed?: boolean
+          lock_status_updates?: boolean
+          manual_arrived_total?: number | null
+          office_id: string
+          orange_extra_due?: number | null
+          orange_extra_due_reason?: string | null
+          prevent_new_orders?: boolean
+          previous_due?: number | null
+          show_postponed_due?: boolean | null
+          updated_at?: string
+        }
+        Update: {
+          balance?: number | null
+          cash_arrived_entries?: Json | null
+          closed_at?: string | null
+          created_at?: string
+          diary_date?: string
+          diary_number?: number
+          id?: string
+          is_archived?: boolean | null
+          is_closed?: boolean
+          lock_status_updates?: boolean
+          manual_arrived_total?: number | null
+          office_id?: string
+          orange_extra_due?: number | null
+          orange_extra_due_reason?: string | null
+          prevent_new_orders?: boolean
+          previous_due?: number | null
+          show_postponed_due?: boolean | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_diaries_office_id"
+            columns: ["office_id"]
+            isOneToOne: false
+            referencedRelation: "offices"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      diary_orders: {
+        Row: {
+          copied_from_diary_id: string | null
+          copied_from_diary_order_id: string | null
+          created_at: string
+          diary_id: string
+          id: string
+          locked_status: boolean | null
+          manual_arrived: number | null
+          manual_collected: number | null
+          manual_delivery_commission: number | null
+          manual_pickup: number | null
+          manual_reject_no_ship: number | null
+          manual_return_penalty: number | null
+          manual_return_status: string | null
+          manual_shipping: number | null
+          manual_shipping_amount: number | null
+          manual_shipping_diff: number | null
+          manual_total_amount: number | null
+          n_column: string | null
+          notes: string | null
+          order_id: string
+          partial_amount: number | null
+          status_inside_diary: string
+        }
+        Insert: {
+          copied_from_diary_id?: string | null
+          copied_from_diary_order_id?: string | null
+          created_at?: string
+          diary_id: string
+          id?: string
+          locked_status?: boolean | null
+          manual_arrived?: number | null
+          manual_collected?: number | null
+          manual_delivery_commission?: number | null
+          manual_pickup?: number | null
+          manual_reject_no_ship?: number | null
+          manual_return_penalty?: number | null
+          manual_return_status?: string | null
+          manual_shipping?: number | null
+          manual_shipping_amount?: number | null
+          manual_shipping_diff?: number | null
+          manual_total_amount?: number | null
+          n_column?: string | null
+          notes?: string | null
+          order_id: string
+          partial_amount?: number | null
+          status_inside_diary?: string
+        }
+        Update: {
+          copied_from_diary_id?: string | null
+          copied_from_diary_order_id?: string | null
+          created_at?: string
+          diary_id?: string
+          id?: string
+          locked_status?: boolean | null
+          manual_arrived?: number | null
+          manual_collected?: number | null
+          manual_delivery_commission?: number | null
+          manual_pickup?: number | null
+          manual_reject_no_ship?: number | null
+          manual_return_penalty?: number | null
+          manual_return_status?: string | null
+          manual_shipping?: number | null
+          manual_shipping_amount?: number | null
+          manual_shipping_diff?: number | null
+          manual_total_amount?: number | null
+          n_column?: string | null
+          notes?: string | null
+          order_id?: string
+          partial_amount?: number | null
+          status_inside_diary?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_diary_orders_copied_from_diary_id"
+            columns: ["copied_from_diary_id"]
+            isOneToOne: false
+            referencedRelation: "diaries"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "fk_diary_orders_diary_id"
+            columns: ["diary_id"]
+            isOneToOne: false
+            referencedRelation: "diaries"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "fk_diary_orders_order_id"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      expenses: {
+        Row: {
+          amount: number
+          category: string
+          created_at: string
+          created_by: string | null
+          expense_date: string
+          expense_name: string
+          id: string
+          notes: string | null
+          office_id: string | null
+        }
+        Insert: {
+          amount?: number
+          category?: string
+          created_at?: string
+          created_by?: string | null
+          expense_date?: string
+          expense_name: string
+          id?: string
+          notes?: string | null
+          office_id?: string | null
+        }
+        Update: {
+          amount?: number
+          category?: string
+          created_at?: string
+          created_by?: string | null
+          expense_date?: string
+          expense_name?: string
+          id?: string
+          notes?: string | null
+          office_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_expenses_office_id"
+            columns: ["office_id"]
+            isOneToOne: false
+            referencedRelation: "offices"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      messages: {
+        Row: {
+          created_at: string
+          id: string
+          is_read: boolean
+          message: string
+          receiver_id: string
+          sender_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_read?: boolean
+          message?: string
+          receiver_id: string
+          sender_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_read?: boolean
+          message?: string
+          receiver_id?: string
+          sender_id?: string
+        }
+        Relationships: []
+      }
+      office_daily_closings: {
+        Row: {
+          closing_date: string
+          created_at: string
+          data_json: Json
+          id: string
+          is_closed: boolean
+          is_locked: boolean
+          office_id: string | null
+          pickup_rate: number
+          prevent_add: boolean
+          updated_at: string
+        }
+        Insert: {
+          closing_date?: string
+          created_at?: string
+          data_json?: Json
+          id?: string
+          is_closed?: boolean
+          is_locked?: boolean
+          office_id?: string | null
+          pickup_rate?: number
+          prevent_add?: boolean
+          updated_at?: string
+        }
+        Update: {
+          closing_date?: string
+          created_at?: string
+          data_json?: Json
+          id?: string
+          is_closed?: boolean
+          is_locked?: boolean
+          office_id?: string | null
+          pickup_rate?: number
+          prevent_add?: boolean
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_office_daily_closings_office_id"
+            columns: ["office_id"]
+            isOneToOne: false
+            referencedRelation: "offices"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      office_daily_expenses: {
+        Row: {
+          amount: number | null
+          category: string
+          created_at: string
+          created_by: string | null
+          expense_date: string
+          id: string
+          notes: string | null
+          office_id: string | null
+        }
+        Insert: {
+          amount?: number | null
+          category?: string
+          created_at?: string
+          created_by?: string | null
+          expense_date?: string
+          id?: string
+          notes?: string | null
+          office_id?: string | null
+        }
+        Update: {
+          amount?: number | null
+          category?: string
+          created_at?: string
+          created_by?: string | null
+          expense_date?: string
+          id?: string
+          notes?: string | null
+          office_id?: string | null
+        }
+        Relationships: []
+      }
+      office_payments: {
+        Row: {
+          amount: number
+          created_at: string
+          id: string
+          notes: string | null
+          office_id: string
+          paid_by: string | null
+          type: string
+        }
+        Insert: {
+          amount?: number
+          created_at?: string
+          id?: string
+          notes?: string | null
+          office_id: string
+          paid_by?: string | null
+          type?: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          id?: string
+          notes?: string | null
+          office_id?: string
+          paid_by?: string | null
+          type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_office_payments_office_id"
+            columns: ["office_id"]
+            isOneToOne: false
+            referencedRelation: "offices"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      offices: {
+        Row: {
+          address: string | null
+          can_add_orders: boolean
+          created_at: string
+          id: string
+          name: string
+          notes: string | null
+          office_commission: number | null
+          owner_name: string | null
+          owner_phone: string | null
+          phone: string | null
+          specialty: string | null
+        }
+        Insert: {
+          address?: string | null
+          can_add_orders?: boolean
+          created_at?: string
+          id?: string
+          name?: string
+          notes?: string | null
+          office_commission?: number | null
+          owner_name?: string | null
+          owner_phone?: string | null
+          phone?: string | null
+          specialty?: string | null
+        }
+        Update: {
+          address?: string | null
+          can_add_orders?: boolean
+          created_at?: string
+          id?: string
+          name?: string
+          notes?: string | null
+          office_commission?: number | null
+          owner_name?: string | null
+          owner_phone?: string | null
+          phone?: string | null
+          specialty?: string | null
+        }
+        Relationships: []
+      }
+      order_notes: {
+        Row: {
+          created_at: string
+          id: string
+          note: string
+          order_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          note: string
+          order_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          note?: string
+          order_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_order_notes_order_id"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      order_status_history: {
+        Row: {
+          changed_at: string
+          changed_by: string | null
+          id: string
+          new_status_id: string | null
+          old_status_id: string | null
+          order_id: string
+          source: string
+        }
+        Insert: {
+          changed_at?: string
+          changed_by?: string | null
+          id?: string
+          new_status_id?: string | null
+          old_status_id?: string | null
+          order_id: string
+          source?: string
+        }
+        Update: {
+          changed_at?: string
+          changed_by?: string | null
+          id?: string
+          new_status_id?: string | null
+          old_status_id?: string | null
+          order_id?: string
+          source?: string
+        }
+        Relationships: []
+      }
+      order_statuses: {
+        Row: {
+          color: string
+          created_at: string
+          id: string
+          is_fixed: boolean
+          name: string
+          sort_order: number
+        }
+        Insert: {
+          color?: string
+          created_at?: string
+          id?: string
+          is_fixed?: boolean
+          name?: string
+          sort_order?: number
+        }
+        Update: {
+          color?: string
+          created_at?: string
+          id?: string
+          is_fixed?: boolean
+          name?: string
+          sort_order?: number
+        }
+        Relationships: []
+      }
+      orders: {
+        Row: {
+          address: string | null
+          barcode: string | null
+          closed_at: string | null
+          closed_by: string | null
+          color: string | null
+          company_id: string | null
+          courier_assigned_at: string | null
+          courier_closed_by: string | null
+          courier_id: string | null
+          created_at: string
+          customer_code: string | null
+          customer_name: string
+          customer_phone: string | null
+          delivery_price: number
+          id: string
+          is_closed: boolean
+          is_courier_closed: boolean | null
+          is_settled: boolean
+          last_modified_by: string | null
+          notes: string | null
+          office_id: string | null
+          partial_amount: number | null
+          price: number
+          priority: string
+          product_id: string | null
+          product_name: string | null
+          quantity: number
+          returned_to_sender: boolean
+          returned_to_sender_at: string | null
+          returned_to_sender_by: string | null
+          shipping_paid: number | null
+          size: string | null
+          status_id: string | null
+          tracking_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          address?: string | null
+          barcode?: string | null
+          closed_at?: string | null
+          closed_by?: string | null
+          color?: string | null
+          company_id?: string | null
+          courier_assigned_at?: string | null
+          courier_closed_by?: string | null
+          courier_id?: string | null
+          created_at?: string
+          customer_code?: string | null
+          customer_name?: string
+          customer_phone?: string | null
+          delivery_price?: number
+          id?: string
+          is_closed?: boolean
+          is_courier_closed?: boolean | null
+          is_settled?: boolean
+          last_modified_by?: string | null
+          notes?: string | null
+          office_id?: string | null
+          partial_amount?: number | null
+          price?: number
+          priority?: string
+          product_id?: string | null
+          product_name?: string | null
+          quantity?: number
+          returned_to_sender?: boolean
+          returned_to_sender_at?: string | null
+          returned_to_sender_by?: string | null
+          shipping_paid?: number | null
+          size?: string | null
+          status_id?: string | null
+          tracking_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          address?: string | null
+          barcode?: string | null
+          closed_at?: string | null
+          closed_by?: string | null
+          color?: string | null
+          company_id?: string | null
+          courier_assigned_at?: string | null
+          courier_closed_by?: string | null
+          courier_id?: string | null
+          created_at?: string
+          customer_code?: string | null
+          customer_name?: string
+          customer_phone?: string | null
+          delivery_price?: number
+          id?: string
+          is_closed?: boolean
+          is_courier_closed?: boolean | null
+          is_settled?: boolean
+          last_modified_by?: string | null
+          notes?: string | null
+          office_id?: string | null
+          partial_amount?: number | null
+          price?: number
+          priority?: string
+          product_id?: string | null
+          product_name?: string | null
+          quantity?: number
+          returned_to_sender?: boolean
+          returned_to_sender_at?: string | null
+          returned_to_sender_by?: string | null
+          shipping_paid?: number | null
+          size?: string | null
+          status_id?: string | null
+          tracking_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_orders_company_id"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "fk_orders_office_id"
+            columns: ["office_id"]
+            isOneToOne: false
+            referencedRelation: "offices"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "fk_orders_product_id"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "fk_orders_status_id"
+            columns: ["status_id"]
+            isOneToOne: false
+            referencedRelation: "order_statuses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      products: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          quantity: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name?: string
+          quantity?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          quantity?: number
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          address: string | null
+          commission_amount: number | null
+          coverage_areas: string | null
+          created_at: string
+          full_name: string
+          id: string
+          login_code: string | null
+          notes: string | null
+          office_id: string | null
+          phone: string | null
+          rejection_commission: number | null
+          salary: number
+          updated_at: string
+        }
+        Insert: {
+          address?: string | null
+          commission_amount?: number | null
+          coverage_areas?: string | null
+          created_at?: string
+          full_name?: string
+          id: string
+          login_code?: string | null
+          notes?: string | null
+          office_id?: string | null
+          phone?: string | null
+          rejection_commission?: number | null
+          salary?: number
+          updated_at?: string
+        }
+        Update: {
+          address?: string | null
+          commission_amount?: number | null
+          coverage_areas?: string | null
+          created_at?: string
+          full_name?: string
+          id?: string
+          login_code?: string | null
+          notes?: string | null
+          office_id?: string | null
+          phone?: string | null
+          rejection_commission?: number | null
+          salary?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_profiles_office_id"
+            columns: ["office_id"]
+            isOneToOne: false
+            referencedRelation: "offices"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      scan_session_items: {
+        Row: {
+          id: string
+          order_id: string
+          scanned_at: string
+          session_id: string
+        }
+        Insert: {
+          id?: string
+          order_id: string
+          scanned_at?: string
+          session_id: string
+        }
+        Update: {
+          id?: string
+          order_id?: string
+          scanned_at?: string
+          session_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_scan_session_items_session_id"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "scan_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      scan_sessions: {
+        Row: {
+          ended_at: string | null
+          id: string
+          notes: string | null
+          started_at: string
+          total_count: number
+          user_id: string | null
+        }
+        Insert: {
+          ended_at?: string | null
+          id?: string
+          notes?: string | null
+          started_at?: string
+          total_count?: number
+          user_id?: string | null
+        }
+        Update: {
+          ended_at?: string | null
+          id?: string
+          notes?: string | null
+          started_at?: string
+          total_count?: number
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      user_permissions: {
+        Row: {
+          id: string
+          permission: string
+          section: string
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          permission?: string
+          section: string
+          user_id: string
+        }
+        Update: {
+          id?: string
+          permission?: string
+          section?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      cleanup_old_activity_logs: { Args: never; Returns: undefined }
+      cleanup_old_diaries: { Args: never; Returns: undefined }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      is_owner_or_admin: { Args: { _user_id: string }; Returns: boolean }
+      log_activity: {
+        Args: { _action: string; _details?: Json }
+        Returns: undefined
+      }
+      nextval_barcode: { Args: never; Returns: number }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "owner" | "admin" | "courier" | "office"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +1268,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["owner", "admin", "courier", "office"],
+    },
   },
 } as const
