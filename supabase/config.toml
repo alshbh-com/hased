@@ -1,1 +1,4 @@
 project_id = "extdebfqgavujjbtahvp"
+
+[functions.bootstrap-owner]
+verify_jwt = false
