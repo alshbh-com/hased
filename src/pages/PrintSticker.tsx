@@ -86,7 +86,7 @@ export default function PrintSticker() {
       const barImg = barcodeDataUrl(barcode);
       return `
         <div class="sticker">
-          <div class="header">ALKING</div>
+          <div class="header">حشاد للشحن</div>
           <div class="date">${new Date(order.created_at).toLocaleDateString('ar-EG')}</div>
           ${barImg ? `<img class="bar-img" src="${barImg}" alt="barcode"/>` : ''}
           <div class="barcode-num">${barcode}</div>
@@ -143,7 +143,7 @@ export default function PrintSticker() {
             <div class="brand">
               <div class="brand-mark">TP</div>
               <div class="brand-text">
-                <h1>ALKING</h1>
+                <h1>حشاد للشحن</h1>
                 <p>نظام التوصيل والشحن</p>
               </div>
             </div>
@@ -196,12 +196,12 @@ export default function PrintSticker() {
             <div class="sign"><span>الختم</span><div class="line"></div></div>
           </div>
 
-          <footer class="foot">شكراً لتعاملكم مع ALKING — للاستفسار يرجى ذكر رقم التتبع</footer>
+          <footer class="foot">شكراً لتعاملكم مع حشاد للشحن — للاستفسار يرجى ذكر رقم التتبع</footer>
         </section>`;
     }).join('');
 
     printWindow.document.write(`<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8">
-      <title>فواتير - ALKING</title>
+      <title>فواتير - حشاد للشحن</title>
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
       <style>
