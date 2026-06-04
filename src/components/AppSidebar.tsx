@@ -86,9 +86,9 @@ export function AppSidebar() {
     <Sidebar side="right" collapsible="icon">
       <SidebarHeader className="p-4">
         <div className="flex items-center gap-2 group-data-[collapsible=icon]:justify-center">
-          <img src={logo} alt="ALKING" className="h-9 w-9 shrink-0 rounded-xl object-cover" />
+          <img src={logo} alt="حشاد للشحن" className="h-9 w-9 shrink-0 rounded-xl object-cover" />
           <span className="text-lg font-extrabold text-sidebar-foreground group-data-[collapsible=icon]:hidden tracking-wide">
-            ALKING
+            حشاد للشحن
           </span>
         </div>
       </SidebarHeader>
